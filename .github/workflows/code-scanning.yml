@@ -37,26 +37,29 @@ jobs:
 
       - name: Clone static code analysis tool
         run: |
+          cd /tmp
           git clone https://github.com/nureka-rodrigo/static-code-analysis-tool.git
-          cd static-code-analysis-tool
+          ls -la static-code-analysis-tool/
 
       - name: Checkout to sarif branch and build the tool
         run: |
-          cd static-code-analysis-tool
+          cd /tmp/static-code-analysis-tool
           git checkout sarif
+          echo "Building with Gradle..."
+          
+          # Ensure Ballerina is in PATH for Gradle subprocesses
+          export PATH="/usr/lib/ballerina/bin:$PATH"
+          export BALLERINA_HOME="/usr/lib/ballerina"
+
+          # Run Gradle build
           ./gradlew build -x test -x check
         env:
           packagePAT: ${{ secrets.PACKAGE_PAT }}
           packageUser: ${{ secrets.PACKAGE_USER }}
 
-      - name: Pack and push scan tool to local repository
-        run: |
-          cd static-code-analysis-tool/scan-command/tool-scan
-          bal pack
-          bal push --repository=local
-
       - name: Generate SARIF report
         run: |
+          echo "Generating SARIF report..."
           bal scan --sarif
 
       - name: Verify SARIF file exists
