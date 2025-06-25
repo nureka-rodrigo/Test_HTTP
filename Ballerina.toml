@@ -5,11 +5,5 @@ org = "nureka"
 repository = "local"
 version = "0.1.0"
 
-[[dependency]]
-name = "http"
-org = "ballerina"
-repository = "local"
-version = "2.14.2"
-
 [build-options]
 observabilityIncluded = true

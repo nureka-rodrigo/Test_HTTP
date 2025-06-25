@@ -1,4 +1,4 @@
-// Copyright (c) 2025 WSO2 LLC. (http://www.wso2.org)
+// Copyright (c) 2024 WSO2 LLC. (https://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -15,19 +15,15 @@
 // under the License.
 
 import ballerina/http;
-import ballerina/io;
 
-public function main() {
-    string|error result = getData("path/to/resource");
-    if result is string {
-        io:println("Response: ", result);
-    } else {
-        io:println("Error: ", result.message());
+service class GreetingServiceRule1 {
+    *http:Service;
+
+    resource function default .() returns string {
+        return "";
     }
-}
 
-public function getData(string path) returns string|error {
-    http:Client userClient = check new ("http://example.com");
-    json response = check userClient->/api/[path];
-    return response.toString();
-}
+    resource function default greet() returns string {
+        return "";
+    }
+};

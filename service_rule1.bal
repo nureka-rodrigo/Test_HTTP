@@ -1,4 +1,4 @@
-// Copyright (c) 2025 WSO2 LLC. (http://www.wso2.org)
+// Copyright (c) 2024 WSO2 LLC. (https://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -17,15 +17,11 @@
 import ballerina/http;
 
 service on new http:Listener(8080) {
-    resource function get .(string path) returns string|error {
-        http:Client userClient = check new ("http://example.com");
-        json response = check userClient->/api/[path];
-        return response.toJsonString();
+    resource function default .() returns string? {
+        return;
     }
 
-    resource function post .(record {|string path;|} payload) returns string|error {
-        http:Client userClient = check new ("http://example.com");
-        json response = check userClient->/api/[payload.path];
-        return response.toJsonString();
+    resource function default greet() returns string? {
+        return;
     }
-}
+};
