@@ -1,0 +1,37 @@
+name: Code Scanning
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 2 * * 1'  # Run weekly on Mondays at 2 AM
+
+jobs:
+  ballerina-scan:
+    name: Ballerina Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Ballerina
+      uses: ballerina-platform/setup-ballerina@v1.1.0
+      with:
+        version: latest
+
+    - name: Run Ballerina scan
+      run: |
+        bal scan
+
+    - name: Upload SARIF to GitHub
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: target/report/scan_results.sarif
+        category: ballerina-scan
