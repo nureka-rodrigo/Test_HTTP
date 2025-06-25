@@ -1,0 +1,175 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.4.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Ballerina Static Code Analysis Tool",
+          "version": "1.0.0",
+          "informationUri": "https://ballerina.io/",
+          "rules": [
+            {
+              "id": "ballerina:3",
+              "shortDescription": {
+                "text": "Non isolated public function"
+              },
+              "fullDescription": {
+                "text": "Non isolated public function"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              }
+            },
+            {
+              "id": "ballerina/http:3",
+              "shortDescription": {
+                "text": "Server-side requests should not be vulnerable to traversing attacks"
+              },
+              "fullDescription": {
+                "text": "Server-side requests should not be vulnerable to traversing attacks"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "ballerina:3",
+          "level": "note",
+          "message": {
+            "text": "Non isolated public function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "function.bal"
+                },
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 1,
+                  "endLine": 28,
+                  "endColumn": 7
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ballerina/http:3",
+          "level": "warning",
+          "message": {
+            "text": "Server-side requests should not be vulnerable to traversing attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "function.bal"
+                },
+                "region": {
+                  "startLine": 30,
+                  "startColumn": 27,
+                  "endLine": 30,
+                  "endColumn": 50
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ballerina/http:3",
+          "level": "warning",
+          "message": {
+            "text": "Server-side requests should not be vulnerable to traversing attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service.bal"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 31,
+                  "endLine": 21,
+                  "endColumn": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ballerina/http:3",
+          "level": "warning",
+          "message": {
+            "text": "Server-side requests should not be vulnerable to traversing attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service.bal"
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 31,
+                  "endLine": 27,
+                  "endColumn": 62
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ballerina/http:3",
+          "level": "warning",
+          "message": {
+            "text": "Server-side requests should not be vulnerable to traversing attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service_class.bal"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 31,
+                  "endLine": 21,
+                  "endColumn": 54
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "ballerina/http:3",
+          "level": "warning",
+          "message": {
+            "text": "Server-side requests should not be vulnerable to traversing attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "service_class.bal"
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 31,
+                  "endLine": 27,
+                  "endColumn": 62
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

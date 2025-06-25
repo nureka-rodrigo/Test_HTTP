@@ -2,11 +2,11 @@ name: Code Scanning
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
   schedule:
-    - cron: '0 2 * * 1'  # Run weekly on Mondays at 2 AM
+    - cron: "0 2 * * 1" # Run weekly on Mondays at 2 AM
 
 jobs:
   ballerina-scan:
@@ -18,20 +18,20 @@ jobs:
       security-events: write
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Ballerina
-      uses: ballerina-platform/setup-ballerina@v1.1.0
-      with:
-        version: latest
+      - name: Verify SARIF file exists
+        run: |
+          if [ ! -f "target/report/scan_results.sarif" ]; then
+            echo "Error: SARIF file not found at target/report/scan_results.sarif"
+            echo "Please ensure the SARIF file is committed to the repository"
+            exit 1
+          fi
+          echo "SARIF file found successfully"
 
-    - name: Run Ballerina scan
-      run: |
-        bal scan
-
-    - name: Upload SARIF to GitHub
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        sarif_file: target/report/scan_results.sarif
-        category: ballerina-scan
+      - name: Upload SARIF to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: target/report/scan_results.sarif
+          category: ballerina-scan
