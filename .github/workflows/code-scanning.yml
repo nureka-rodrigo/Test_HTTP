@@ -45,6 +45,9 @@ jobs:
           cd static-code-analysis-tool
           git checkout sarif
           ./gradlew build -x test -x check
+        env:
+          packagePAT: ${{ secrets.PACKAGE_PAT }}
+          packageUser: ${{ secrets.PACKAGE_USER }}
 
       - name: Pack and push scan tool to local repository
         run: |
